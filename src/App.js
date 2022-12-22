@@ -1,15 +1,16 @@
 import Header from './Header/Header'
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import CalenerPage from './Header/CalenderPage'
 
 function App() {
-
+  
   const InputDate = useRef('')
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState((new Date()));
 
-  const [Holidays, setHolidays] = useState({ [date]: [] });
+  const [Holidays, setHolidays] = useState({ [date.toDateString()]: ['m1'] });
 
   const [clickedHoliday, setClickedHoliday] = useState(false)
+
 
   const onClickAddHoliday = () => {
     setClickedHoliday(true)
@@ -17,21 +18,13 @@ function App() {
   }
 
 
-
-  const onSelectHolidayDate = (date) => {
-    setHolidays({ ...Holidays, [date]: [] })
-  }
-
   const AddHoliday = (e) => {
-    e.preventDefault()
-    let arr = Object.keys(Holidays).length
-    for (let i = 1; i <= arr; i++) {
-      setHolidays({ ...Holidays, [date]: [...Holidays[date], i] })
-    }
+
+    setHolidays((prevState) => {
+      return { ...prevState, [date.toDateString()]: prevState[date.toDateString()] ? [...prevState[date.toDateString()], InputDate.current.value]  : [InputDate.current.value]}
+    })
+    localStorage.setItem('Holidays', JSON.stringify(Holidays))
     setClickedHoliday(false)
-    console.log(InputDate.current.value)
-    console.log(Object.keys(Holidays).length)
-    console.log(Holidays)
   }
 
   const Overlay = {
@@ -53,7 +46,7 @@ function App() {
     <>
       <div className="App">
         <Header onClickAddHoliday={onClickAddHoliday} />
-        <CalenerPage onClickAddHoliday={onClickAddHoliday} onSelectHolidayDate={onSelectHolidayDate} setDate={setDate} date={date} Holidays={Holidays} setHolidays={setHolidays} />
+        <CalenerPage onClickAddHoliday={onClickAddHoliday} setDate={setDate} date={date} Holidays={Holidays} setHolidays={setHolidays} />
       </div>
       {  clickedHoliday ? <div style={Overlay} className=' d-inline-flex justify-content-center align-item-center '>
         <div className='bg-white p-4 mx-3 '>
