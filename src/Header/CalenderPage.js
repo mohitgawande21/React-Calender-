@@ -12,15 +12,12 @@ export default function CalenerPage({ onClickAddHoliday, Holidays, setHolidays, 
                 <Calendar className='w-100' onChange={setDate} value={dateS} tileContent={
 
                     ({ date, view }) => {
-
                             return Object.keys(Holidays).includes(date.toDateString()) && (
-                               Holidays[date.toDateString()].map((item,index) => {
-                                   console.log(item)
+                                Holidays[date.toDateString()].map((item,index) => {
+                                   console.log(date.toDateString())                       
                                     return  <Holiday /> 
                                 })
                             )
-                        
-
                     }
 
                 }>
