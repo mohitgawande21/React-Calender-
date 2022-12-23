@@ -7,28 +7,22 @@ export default function CalenerPage({ onClickAddHoliday, Holidays, setHolidays, 
     return (
         <div className='app d-flex  justify-content-center align-items-center'>
             <div className='calendar-container my-3'>
-                {/* <Calendar onChange={setDate} value={date} tileContent={Holidays[date.toDateString()] ? Holidays[date.toDateString()].map(() => date.toDateString() !== <Holiday />) : ''}>
-                </Calendar> */}
-
-                {/* <Calendar onChange={setDate} value={date} tileContent={({ date1, view }) => {
-                console.log(date1, view)
-                return Holidays[date.toDateString()] ? Holidays[date.toDateString()].filter((item) => {
-                    return date1.toDateString() != item && <Holiday />
-                }) : ''
-            }}>
-            </Calendar> */}
-
+                <p>Please Select Any Date to add Holiday then click on Add Holiday Button</p>
                 <Calendar onChange={setDate} value={dateS} tileContent={
                     ({ date, view }) => {
-                        console.log(date.toDateString() == dateS.toDateString())
-
-                        return date.toDateString() == dateS.toDateString() && <Holiday />
+                        // console.log(date.toDateString() == dateS.toDateString())
+                        // date.toDateString() 
+                        return (
+                            Holidays[dateS.toDateString()] && Holidays[dateS.toDateString()].map((item) => {
+                                return date.toDateString() == dateS.toDateString() && <Holiday />
+                            })
+                        )
                     }
 
                 }>
                 </Calendar>
 
-                <p className=''>
+                <p className='my-3'>
                     <h3 className='bold'>Holidays for Selected Date</h3>
                     {Holidays[dateS.toDateString()] ? Holidays[dateS.toDateString()].map((item) => {
                         return <li><span>{item}</span></li>

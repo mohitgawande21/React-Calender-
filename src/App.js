@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from 'react';
 import CalenerPage from './Header/CalenderPage'
 
 function App() {
-  
+
   const InputDate = useRef('')
   const [date, setDate] = useState((new Date()));
 
-  const [Holidays, setHolidays] = useState({ [date.toDateString()]: ['m1'] });
+  const [Holidays, setHolidays] = useState({ [date.toDateString()]: ['Today is Holiday'] });
 
   const [clickedHoliday, setClickedHoliday] = useState(false)
 
@@ -21,7 +21,7 @@ function App() {
   const AddHoliday = (e) => {
 
     setHolidays((prevState) => {
-      return { ...prevState, [date.toDateString()]: prevState[date.toDateString()] ? [...prevState[date.toDateString()], InputDate.current.value]  : [InputDate.current.value]}
+      return { ...prevState, [date.toDateString()]: prevState[date.toDateString()] ? [...prevState[date.toDateString()], InputDate.current.value] : [InputDate.current.value] }
     })
     localStorage.setItem('Holidays', JSON.stringify(Holidays))
     setClickedHoliday(false)
@@ -51,8 +51,8 @@ function App() {
       {  clickedHoliday ? <div style={Overlay} className=' d-inline-flex justify-content-center align-item-center '>
         <div className='bg-white p-4 mx-3 '>
           <div className='d-flex justify-content-center flex-column align-item-center'>
-            <h5 className=''>Add Employee Details</h5>
-            <label>Name</label>
+            <h5 className=''>Add Event Details</h5>
+            <label>Event Name</label>
             <input ref={InputDate} type="text" className='' name="date" placeholder='Name' />
           </div>
           <div className='d-flex  justify-content-center mx-3 p-2' >
