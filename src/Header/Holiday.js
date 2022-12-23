@@ -7,11 +7,12 @@ export default function Holiday() {
     width: '5px',
     backgroundColor: '#bbb',
     borderRadius: '50%',
-    display: 'inline-block'
+    display: 'inline-block',
+    marginLeft:'1px'
   }
   return (
-    <div>
-      <span style={dot}></span>
-    </div>
+    <>
+      <span  style={dot}></span>
+    </>
   )
 }

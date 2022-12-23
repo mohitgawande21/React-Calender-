@@ -10,8 +10,6 @@ export default function CalenerPage({ onClickAddHoliday, Holidays, setHolidays, 
                 <p>Please Select Any Date to add Holiday then click on Add Holiday Button</p>
                 <Calendar className='w-100' onChange={setDate} value={dateS} tileContent={
                     ({ date, view }) => {
-                        // console.log(date.toDateString() == dateS.toDateString())
-                        // date.toDateString() 
                         return (
                             Holidays[dateS.toDateString()] && Holidays[dateS.toDateString()].map((item) => {
                                 return date.toDateString() == dateS.toDateString() && <Holiday />
@@ -26,7 +24,7 @@ export default function CalenerPage({ onClickAddHoliday, Holidays, setHolidays, 
                     <h3 className='bold'>Holidays for Selected Date</h3>
                     {Holidays[dateS.toDateString()] ? Holidays[dateS.toDateString()].map((item) => {
                         return <li><span>{item}</span></li>
-                    }) : <h4 className='text-center'>No Holiday added</h4>}
+                    }) : <h4 className='text-center text-warning'>No Holiday Added For This Date</h4>}
                 </p>
             </div>
         </div>
