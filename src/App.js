@@ -46,7 +46,7 @@ function App() {
     <>
       <div className="App">
         <Header onClickAddHoliday={onClickAddHoliday} />
-        <CalenerPage onClickAddHoliday={onClickAddHoliday} setDate={setDate} date={date} Holidays={Holidays} setHolidays={setHolidays} />
+        <CalenerPage onClickAddHoliday={onClickAddHoliday} setDate={setDate} dateS={date} Holidays={Holidays} setHolidays={setHolidays} />
       </div>
       {  clickedHoliday ? <div style={Overlay} className=' d-inline-flex justify-content-center align-item-center '>
         <div className='bg-white p-4 mx-3 '>
