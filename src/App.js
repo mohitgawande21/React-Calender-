@@ -3,11 +3,12 @@ import { useEffect, useRef, useState } from 'react';
 import CalenerPage from './Header/CalenderPage'
 
 function App() {
-
   const InputDate = useRef('')
   const [date, setDate] = useState((new Date()));
+  const localStorageHolidays = JSON.parse(localStorage.getItem('Holidays'))
+  let length = localStorageHolidays ? Object.keys(localStorageHolidays).length : 0
 
-  const [Holidays, setHolidays] = useState({ [date.toDateString()]: ['Today is Holiday'] });
+  const [Holidays, setHolidays] = useState(length > 0 ? localStorageHolidays : { [date.toDateString()]: ['Today is Default Holiday'] });
 
   const [clickedHoliday, setClickedHoliday] = useState(false)
 
@@ -19,12 +20,18 @@ function App() {
 
 
   const AddHoliday = (e) => {
+    setHolidays(
+      { ...Holidays, [date.toDateString()]: Holidays[date.toDateString()] ? [...Holidays[date.toDateString()], InputDate.current.value] : [InputDate.current.value] }
+    )
 
-    setHolidays((prevState) => {
-      return { ...prevState, [date.toDateString()]: prevState[date.toDateString()] ? [...prevState[date.toDateString()], InputDate.current.value] : [InputDate.current.value] }
-    })
-    localStorage.setItem('Holidays', JSON.stringify(Holidays))
+
+    // setHolidays((prevState) => {
+    //   return { ...prevState, [date.toDateString()]: prevState[date.toDateString()] ? [...prevState[date.toDateString()], InputDate.current.value] : [InputDate.current.value] }
+    // })
+    localStorage.setItem('Holidays', JSON.stringify({ ...Holidays, [date.toDateString()]: Holidays[date.toDateString()] ? [...Holidays[date.toDateString()], InputDate.current.value] : [InputDate.current.value] }
+    ))
     setClickedHoliday(false)
+
   }
 
   const Overlay = {
