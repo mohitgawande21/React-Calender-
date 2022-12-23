@@ -8,7 +8,7 @@ export default function CalenerPage({ onClickAddHoliday, Holidays, setHolidays, 
         <div className='app d-flex  justify-content-center align-items-center'>
             <div className='calendar-container my-3'>
                 <p>Please Select Any Date to add Holiday then click on Add Holiday Button</p>
-                <Calendar onChange={setDate} value={dateS} tileContent={
+                <Calendar className='w-100' onChange={setDate} value={dateS} tileContent={
                     ({ date, view }) => {
                         // console.log(date.toDateString() == dateS.toDateString())
                         // date.toDateString() 
