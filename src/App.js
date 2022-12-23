@@ -8,30 +8,26 @@ function App() {
   const localStorageHolidays = JSON.parse(localStorage.getItem('Holidays'))
   let length = localStorageHolidays ? Object.keys(localStorageHolidays).length : 0
 
+  // Holiday state is to manage Array for Holidays added
   const [Holidays, setHolidays] = useState(length > 0 ? localStorageHolidays : { [date.toDateString()]: ['Today is Default Holiday'] });
 
+  //clickedHoliday state for show the add holiday popup
   const [clickedHoliday, setClickedHoliday] = useState(false)
 
 
   const onClickAddHoliday = () => {
     setClickedHoliday(true)
-
   }
 
 
+  // AddHoliday function is to update the Holiday Array
   const AddHoliday = (e) => {
     setHolidays(
       { ...Holidays, [date.toDateString()]: Holidays[date.toDateString()] ? [...Holidays[date.toDateString()], InputDate.current.value] : [InputDate.current.value] }
     )
-
-
-    // setHolidays((prevState) => {
-    //   return { ...prevState, [date.toDateString()]: prevState[date.toDateString()] ? [...prevState[date.toDateString()], InputDate.current.value] : [InputDate.current.value] }
-    // })
     localStorage.setItem('Holidays', JSON.stringify({ ...Holidays, [date.toDateString()]: Holidays[date.toDateString()] ? [...Holidays[date.toDateString()], InputDate.current.value] : [InputDate.current.value] }
     ))
     setClickedHoliday(false)
-
   }
 
   const Overlay = {
