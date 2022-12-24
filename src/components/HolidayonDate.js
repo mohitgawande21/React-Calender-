@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function HolidayonDate({ onClickAddHoliday, Holidays, dateS, setShowHoliday }) {
+export default function HolidayonDate({showdate, onClickAddHoliday, Holidays, dateS, setShowHoliday }) {
 
     const setClickedHoliday = () => {
         setShowHoliday(false)
@@ -28,10 +28,10 @@ export default function HolidayonDate({ onClickAddHoliday, Holidays, dateS, setS
     return (
         <div style={Overlay} >
             <p className='my-3 bg-white p-4 mx-3'>
-                <h3 className='bold'>Holidays for Selected Date</h3>
+                <h3 className='bold'>Holidays for {showdate}</h3>
                 {Holidays[dateS.toDateString()] ? Holidays[dateS.toDateString()].map((item) => {
                     return <li><span>{item}</span></li>
-                }) : <h4 className='text-center text-warning'>No Holiday Added For This Date</h4>}
+                }) : <h6 className='text-center text-warning'>No Holiday Added For This Date</h6>}
                 <button onClick={setClickedHoliday} type="submit" className=" my-1 btn btn-primary  bg-success rounded-0"  >Cancle</button>
                 <button onClick={onClickedHolidayAdd} className=" mx-3 btn btn-primary mx-2 bg-success rounded-0"  >Add Holiday</button>
             </p>

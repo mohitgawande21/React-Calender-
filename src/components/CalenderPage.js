@@ -4,11 +4,20 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import Holiday from './Holiday'
 import HolidayonDate from './HolidayonDate';
-export default function CalenerPage({  onClickAddHoliday, Holidays, setHolidays, dateS, setDate }) {
+export default function CalenerPage({ onClickAddHoliday, Holidays, dateS, setDate }) {
 
     const [showHoliday, setShowHoliday] = useState(false)
-    const onClickDate = () => {
+
+    const [showdate, setShowDate] = useState('')
+
+    const onClickDate = (date) => {
         setShowHoliday(true)
+        let DDMMYYFormat = [date.getDate(),
+        (date.getMonth() + 1),
+        date.getFullYear()
+        ].join('/');
+        setShowDate(DDMMYYFormat)
+
     }
     return (
         <div className='app d-flex  justify-content-center align-items-center'>
@@ -26,7 +35,7 @@ export default function CalenerPage({  onClickAddHoliday, Holidays, setHolidays,
                 }>
                 </Calendar>
 
-                {showHoliday ? <HolidayonDate onClickAddHoliday={onClickAddHoliday} Holidays={Holidays} dateS={dateS} setShowHoliday={setShowHoliday} /> : ''}
+                {showHoliday ? <HolidayonDate showdate={showdate} onClickAddHoliday={onClickAddHoliday} Holidays={Holidays} dateS={dateS} setShowHoliday={setShowHoliday} /> : ''}
 
                 <h3>Total Holiday List</h3>
                 {
