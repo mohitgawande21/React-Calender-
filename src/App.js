@@ -1,6 +1,6 @@
-import Header from './Header/Header'
+import Header from './components/Header'
 import { useEffect, useRef, useState } from 'react';
-import CalenerPage from './Header/CalenderPage'
+import CalenerPage from './components/CalenderPage'
 
 function App() {
   const InputDate = useRef('')
